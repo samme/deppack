@@ -12,5 +12,6 @@ exports.loadInit = (config, json) => {
   exports.isNpm = deppack.isNpm.bind(deppack);
   exports.isNpmJSON = deppack.isNpmJSON.bind(deppack);
   exports.isShim = deppack.isShim.bind(deppack);
+  exports.getAllDependents = deppack.getAllDependents.bind(deppack);
   return deppack.init();
 };
