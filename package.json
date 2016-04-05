@@ -1,6 +1,6 @@
 {
   "name": "deppack",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Extract nodejs dependencies to browser.",
   "main": "index.js",
   "scripts": {
