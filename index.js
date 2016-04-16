@@ -13,5 +13,6 @@ exports.loadInit = (config, json) => {
   exports.isNpmJSON = deppack.isNpmJSON.bind(deppack);
   exports.isShim = deppack.isShim.bind(deppack);
   exports.getAllDependents = deppack.getAllDependents.bind(deppack);
+  exports.graph = () => deppack.depGraph.serialize(deppack.modMap, deppack.fileReflection);
   return deppack.init();
 };
