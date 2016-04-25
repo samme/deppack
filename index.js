@@ -8,6 +8,7 @@ exports.loadInit = (config, json) => {
   exports.exploreDeps = deppack.exploreDeps.bind(deppack);
   exports.processFiles = deppack.processFiles.bind(deppack);
   exports.wrapInModule = deppack.wrapInModule.bind(deppack);
+  exports.wrapSourceInModule = deppack.wrapSourceInModule.bind(deppack);
   exports.needsProcessing = deppack.needsProcessing.bind(deppack);
   exports.isNpm = deppack.isNpm.bind(deppack);
   exports.isNpmJSON = deppack.isNpmJSON.bind(deppack);
