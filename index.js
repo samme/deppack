@@ -3,14 +3,22 @@ const Deppack = require('./lib/deppack');
 const NoDeppack = require('./lib/no-deppack');
 
 let deppack; // eslint-disable-line prefer-const
+const bindToDeppack = (fnName) => {
+  return function() {
+    if (!deppack) {
+      throw new Error('deppack is not initialized');
+    }
+    return deppack[fnName].apply(deppack, arguments);
+  };
+};
+
+Object.getOwnPropertyNames(Deppack.prototype)
+  .filter(x => x !== 'init' && x !== 'constructor')
+  .forEach(fnName => {
+    exports[fnName] = bindToDeppack(fnName);
+  });
+
 exports.loadInit = (config, json) => {
   deppack = config.npm.enabled ? new Deppack(config, json) : new NoDeppack();
-  exports.exploreDeps = deppack.exploreDeps.bind(deppack);
-  exports.processFiles = deppack.processFiles.bind(deppack);
-  exports.wrapInModule = deppack.wrapInModule.bind(deppack);
-  exports.needsProcessing = deppack.needsProcessing.bind(deppack);
-  exports.isNpm = deppack.isNpm.bind(deppack);
-  exports.isNpmJSON = deppack.isNpmJSON.bind(deppack);
-  exports.isShim = deppack.isShim.bind(deppack);
   return deppack.init();
 };
